@@ -10,4 +10,4 @@ on:
 
 jobs:
   cliente-webflux:
-    uses: ./.github/workflows/cliente-webflux-ci.yml
+    uses: ./cliente-webflux/.github/workflows/cliente-webflux-ci.yml@main
