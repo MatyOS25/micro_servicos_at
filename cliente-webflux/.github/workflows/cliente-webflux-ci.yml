@@ -1,0 +1,28 @@
+name: Cliente WebFlux CI
+
+on:
+  push:
+    paths:
+      - 'cliente-webflux/**'
+  pull_request:
+    paths:
+      - 'cliente-webflux/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v2
+      with:
+        java-version: '21'
+        distribution: 'adopt'
+
+    - name: Build with Maven
+      run: mvn -B package --file cliente-webflux/pom.xml
+
+    - name: Run tests
+      run: mvn test --file cliente-webflux/pom.xml
