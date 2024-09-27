@@ -18,6 +18,8 @@ public class PostController {
     public Flux<Post> getAllPosts() {
         return postService.getAllPosts();
     }
+    
+    
 
     @GetMapping("/{id}")
     public Mono<Post> getPostById(@PathVariable Long id) {
