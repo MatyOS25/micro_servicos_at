@@ -1,0 +1,13 @@
+name: Main Workflow
+
+on:
+  push:
+    paths:
+      - 'cliente-webflux/**'
+  pull_request:
+    paths:
+      - 'cliente-webflux/**'
+
+jobs:
+  cliente-webflux:
+    uses: ./.github/workflows/cliente-webflux-ci.yml
