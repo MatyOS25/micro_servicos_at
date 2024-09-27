@@ -70,5 +70,4 @@ class PostControllerIntegrationTest {
                 .contains(new Post(1L, 1L, "Test Post", "This is a test post"));
     }
 
-    // Adicione mais testes para outros endpoints do PostController
 }

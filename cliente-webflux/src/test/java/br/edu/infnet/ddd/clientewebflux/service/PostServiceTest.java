@@ -61,5 +61,4 @@ class PostServiceTest {
                 .verify();
     }
 
-    // Adicione mais testes para outros métodos do PostService
 }
