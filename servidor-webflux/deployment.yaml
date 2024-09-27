@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servidor-webflux
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: servidor-webflux
+  template:
+    metadata:
+      labels:
+        app: servidor-webflux
+    spec:
+      containers:
+      - name: servidor-webflux
+        image: servidor-webflux:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: servidor-webflux-service
+spec:
+  selector:
+    app: servidor-webflux
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
