@@ -39,4 +39,14 @@ public class PostService {
                 .retrieve()
                 .bodyToFlux(Post.class);
     }
+
+    public Flux<Post> getPostsByTitle(String title) {
+        return webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/posts")
+                        .queryParam("title", title)
+                        .build())
+                .retrieve()
+                .bodyToFlux(Post.class);
+    }
 }

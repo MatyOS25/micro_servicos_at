@@ -61,4 +61,32 @@ class PostServiceTest {
                 .verify();
     }
 
+    @Test
+    void testGetPostsByTitle() {
+        String title = "Test Post";
+        mockServerClient.when(
+                request()
+                        .withMethod("GET")
+                        .withPath("/posts")
+                        .withQueryStringParameter("title", title)
+        ).respond(
+                response()
+                        .withStatusCode(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("[{\"id\":1,\"userId\":1,\"title\":\"Test Post\",\"body\":\"This is a test post\"}]")
+        );
+
+        Flux<Post> posts = postService.getPostsByTitle(title);
+
+        StepVerifier.create(posts)
+                .expectNextMatches(post -> 
+                    post.getId() == 1 &&
+                    post.getUserId() == 1 &&
+                    "Test Post".equals(post.getTitle()) &&
+                    "This is a test post".equals(post.getBody())
+                )
+                .expectComplete()
+                .verify();
+    }
+
 }

@@ -28,4 +28,9 @@ public class PostController {
     public Flux<Post> getPostsByUserId(@PathVariable Long userId) {
         return postService.getPostsByUserId(userId);
     }
+
+    @GetMapping("/search")
+    public Flux<Post> getPostsByTitle(@RequestParam String title) {
+        return postService.getPostsByTitle(title);
+    }
 }

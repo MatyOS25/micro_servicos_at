@@ -70,4 +70,30 @@ class PostControllerIntegrationTest {
                 .contains(new Post(1L, 1L, "Test Post", "This is a test post"));
     }
 
+    @Test
+    void testGetPostsByTitle() {
+        String title = "Test Post";
+        mockServerClient.when(
+                request()
+                        .withMethod("GET")
+                        .withPath("/posts")
+                        .withQueryStringParameter("title", title)
+        ).respond(
+                response()
+                        .withStatusCode(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("[{\"id\":1,\"userId\":1,\"title\":\"Test Post\",\"body\":\"This is a test post\"}]")
+        );
+
+        webTestClient.get().uri(uriBuilder -> uriBuilder
+                .path("/posts/search")
+                .queryParam("title", title)
+                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Post.class)
+                .hasSize(1)
+                .contains(new Post(1L, 1L, "Test Post", "This is a test post"));
+    }
+
 }
