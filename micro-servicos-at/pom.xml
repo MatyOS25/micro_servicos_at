@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.edu.infnet</groupId>
-    <artifactId>micro_servicos_at</artifactId>
+    <artifactId>micro-servicos-at</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>micro_servicos_at</name>
-    <description>micro_servicos_at</description>
+    <name>micro-servicos-at</name>
+    <description>micro-servicos-at</description>
     <url/>
     <licenses>
         <license/>

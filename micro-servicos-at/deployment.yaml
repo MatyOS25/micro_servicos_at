@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-servicos-at
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: micro-servicos-at
+  template:
+    metadata:
+      labels:
+        app: micro-servicos-at
+    spec:
+      containers:
+      - name: micro-servicos-at
+        image: micro-servicos-at:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: micro-servicos-at-service
+spec:
+  selector:
+    app: micro-servicos-at
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+  type: LoadBalancer
